@@ -44,8 +44,8 @@ p {
     color: #00FFFF;
 }
 .neon-suffix {
-	text-shadow: 0 0 10px #00BFFF, 0 0 20px #00BFFF, 0 0 30px #00BFFF;
-    color: #00BFFF;
+	text-shadow: 0 0 10px #FFFFFF, 0 0 20px #FFFFFF, 0 0 30px #FFFFFF;
+    color: #FFFFFF;
 }
 .neon-box {
     background-color: #008080; 
@@ -71,8 +71,8 @@ p {
 }
 
 .nav-links a:hover {
-	text-shadow: 0 0 10px #FF0000, 0 0 20px #FF0000, 0 0 30px #FF0000;
-    color: #FF0000; /* Rusty Red for hover effect */
+	text-shadow: 0 0 20px #FFFFFF, 0 0 30px #FFFFFF, 0 0 40px #FFFFFF;
+    color: #FFFFFF; /* Rusty Red for hover effect */
 }
 
 /* Hero Section Styles */
