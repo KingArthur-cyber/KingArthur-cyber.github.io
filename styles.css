@@ -1,0 +1,121 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Old Standard TT', serif; /* Steampunk Vibes */
+    background-color: #333333;
+    color: #F5F5DC;
+    font-size: 16px;
+    line-height: 1.6; /* Increase line spacing for readability */
+}
+
+/* Header Styles */
+header {
+    background-color: #000; /* Dark background for steampunk feel */
+    color: #C0C0C0; /* Silver for header text */
+    padding: 20px 0;
+}
+
+nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+p {
+	font-size: 24px;
+}
+
+.logo h1 {
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.neon-text {
+    text-shadow: 0 0 10px #00FFFF, 0 0 20px #00FFFF, 0 0 30px #00FFFF;
+    color: #00FFFF;
+}
+.neon-suffix {
+	text-shadow: 0 0 10px #00BFFF, 0 0 20px #00BFFF, 0 0 30px #00BFFF;
+    color: #00BFFF;
+}
+.neon-box {
+    background-color: #008080; 
+    width: auto;
+    height: auto;
+    border: 4px solid #008080; 
+    border-radius: 10px; 
+    box-shadow: 0 0 10px rgba(0, 128, 128, 0.7), 0 0 20px rgba(0, 128, 128, 0.5), 0 0 30px rgba(0, 128, 128, 0.3); 
+}
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin-right: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #C0C0C0; /* Silver for navigation links */
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+	text-shadow: 0 0 10px #FF0000, 0 0 20px #FF0000, 0 0 30px #FF0000;
+    color: #FF0000; /* Rusty Red for hover effect */
+}
+
+/* Hero Section Styles */
+.hero {
+    background-image: url('background.jpg');
+    background-size: cover;
+    text-align: center;
+    padding: 100px 0;
+}
+
+.hero-content h2 {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #F5F5DC; /* Light Beige for hero text */
+}
+
+.hero-content p {
+    font-size: 18px;
+    margin-bottom: 40px;
+    color: #C0C0C0; /* Silver for hero text */
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #00FF00;
+    color: #301D06; /* Dark Brown for button text */
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+    background-color: #009900;
+}
+
+
+/* Footer Styles */
+footer {
+    background-color: #000; /* Dark background for footer */
+    color: #C0C0C0; /* Silver for footer text */
+    text-align: center;
+    padding: 10px 0;
+}
