@@ -1,0 +1,165 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Old Standard TT', serif; /* Steampunk Vibes */
+    background-color: #333333;
+    color: black;
+    font-size: 16px;
+    line-height: 1.6; /* Increase line spacing for readability */
+}
+/*Table styles*/
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2), 0 0 40px rgba(255, 255, 255, 0.2);
+    color: white;
+  }
+
+  th, td {
+    border: 8px solid transparent;
+    padding: 8px;
+    text-align: left;
+    transition: border-color 0.3s, background-color 0.3s, color 0.3s;
+  }
+
+  th {
+    background-color: #FFD700;
+    color: #111;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5);
+  }
+
+  td {
+    background-color: #111;
+  }
+
+  tr:hover td {
+    background-color: rgba(252, 1, 1, 1);
+  }
+  th, td {
+    border-image: linear-gradient(90deg, #FFD700, #fff, #FFD700) 1;
+    border-image-slice: 1;
+  }
+/* Header Styles */
+header {
+    background-color: #000; /* Dark background for steampunk feel */
+    color: #C0C0C0; /* Silver for header text */
+    padding: 20px 0;
+}
+
+nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1 {
+    color: #000000;
+    text-shadow: 2px 2px 4px #00ffcc;
+}
+
+p {
+    margin-top: 20px;
+    font-size: 18px;
+    color:#000;
+    text-align: left;
+    
+}
+
+img {
+    width: 60%;
+    height: 40%;
+    border-radius: 8px;
+    margin-top: 20px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    align-items: center;
+}
+
+.logo h1 {
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.neon-text {
+    text-shadow: 0 0 10px #00FFFF, 0 0 20px #00FFFF, 0 0 30px #00FFFF;
+    color: #00FFFF;
+}
+.neon-suffix {
+	text-shadow: 0 0 10px #FFFFFF, 0 0 20px #FFFFFF, 0 0 30px #FFFFFF;
+    color: #FFFFFF;
+}
+
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin-right: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #C0C0C0; /* Silver for navigation links */
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+	text-shadow: 0 0 20px #FFFFFF, 0 0 30px #FFFFFF, 0 0 40px #FFFFFF;
+    color: #FFFFFF; /* Rusty Red for hover effect */
+}
+
+.container {
+    background-color: #fff;
+    text-align: center;
+    width: auto;
+    height: auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+
+}
+
+
+/* Hero Section Styles */
+.hero {
+    background-image: url('background.jpg');
+    background-size: cover;
+    text-align: center;
+    padding: 100px 0;
+}
+
+.hero-content h2 {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #F5F5DC; /* Light Beige for hero text */
+}
+
+.hero-content p {
+    font-size: 18px;
+    margin-bottom: 40px;
+    color: #C0C0C0; /* Silver for hero text */
+}
+
+
+
+/* Footer Styles */
+footer {
+    background-color: #000; /* Dark background for footer */
+    color: #C0C0C0; /* Silver for footer text */
+    text-align: center;
+    padding: 10px 0;
+}
