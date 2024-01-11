@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bioinformatics Hub</title>
+    <link rel="stylesheet" href="css/project1.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1><span class="neon-text">Bioinformatics</span><span class="neon-suffix"> Hub</span></h1>
+            </div>
+            <ul class="nav-links">
+                <li><span class ="neon-suffix"><a href="#">Home</a></span></li>
+                <li><span class ="neon-suffix"><a href="#">Services</a></span></li>
+                <li><span class ="neon-suffix"><a href="#">Tools</a></span></li>
+                <li><span class ="neon-suffix"><a href="#">About</a></span></li>
+                <li><span class ="neon-suffix"><a href="#">Contac</a></span></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <h1>Machine Learning approach to classify and predict antibiotic resistance proteome.</h1>
+        <a href="https://github.com/KingArthur-cyber/AR-V-NAR">Code link</a><br>
+        <h1>Introduction</h1>
+
+        <p>
+            The study utilizes a diverse dataset comprising annotated sequences of antibiotic-resistant sequence from <b>CARD</b> and 
+            susceptible proteins obtained from Uniprot. Features <b>(AAC, CTD, PAAC, APAAC, DPC)</b> were calculated using <b>propythia.</b> 
+            Various machine learning algorithms, such as<b> support vector machines, random forests, Xtreme gradient boosting, 
+            K-Nearest Neighbor and Gauss naïve bayes.</b><br>
+
+            To assess the performance of the developed models, rigorous<b> cross-validation procedures </b>are implemented, and evaluation
+            metrics, such as <b>accuracy, precision, recall, and area under the receiver operating characteristic curve (AUC-ROC)</b>, are 
+            employed. Additionally, the models are subjected to external validation using independent datasets to gauge their 
+            generalization capabilities.<br>
+            The results highlight the potential of these models to accelerate the understanding of resistance mechanisms and 
+            facilitate the design of targeted interventions to combat antibiotic resistance. Future studies can build upon this
+            research to enhance the accuracy and interpretability of the models and expand their application to large-scale 
+            genomic datasets, thereby advancing our ability to address the pressing challenge of antibiotic resistance.
+            <br>
+            Bacteria are naturally resistant to some antibiotics, for example having a thick cell wall make accessing the target 
+            impossible for some of the antibiotics, but resistance can be developed through mutations and horizontal gene transfer 
+            as well. A microbes capacity to withstand the effects of a certain antibiotic due to innate structural or functional 
+            traits is known as intrinsic resistance (FIG. 1). Not having a target for the antibiotic to bind to is one of the 
+            mechanisms of intrinsic resistance in a single species. For example, the biocide triclosan is very effective against 
+            Gram-positive bacteria, but it is ineffective against gram negative bacteria, which have a thicker LPS layer for 
+            protection.<br>
+
+            Microbes can also acquire or evolve antibiotic resistance in addition to innate resistance. This can be mediated by a 
+            variety of mechanisms which are as follows: To reduce the concentration of antibiotic within the cell using efflux pumps
+            or blocking the entry of antibiotics within the cell; Modification of the antibiotic target or post translational 
+            modification of target can also prevent antibiotic binding; and, those that have the ability to modify or hydrolyze 
+            the antibiotic molecule.<br>
+            
+        </p>
+        <img src="imgs/project1_img1.jpg" alt="Image 1">
+        
+        <h1>Data collection</h1>
+        <p>
+            4657 sequences of antibiotic resistant proteins in fasta format were collected from
+            CARD database (https://card.mcmaster.ca/), the length varied from 53 to 1452,
+            and 6000 random bacterial peptides were downloaded from Uniport database    
+            (https://www.uniprot.org/), by choosing bacteria as a filter and sorting length 200 to
+            800.Both the positive and negative datasets were checked for redundancy amongst each other as well.
+            Using Propythia, 5 protein descriptors were calculated.
+        </p>
+        <br>
+        <table>
+            <thead>
+              <tr>
+                <th>Protein Descriptors</th>
+                <th>Data Represented</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>AAC (Amino Acid Composition)</td>
+                <td>Relative abundance of amino acid within a protein sequence.</td>
+              </tr>
+              <tr>
+                <td>CTD (Composition, Transition and Distribution)</td>
+                <td>It is used to represent the physicochemical properties of amino acid sequences</td>
+              </tr>
+              <tr>
+                <td>PAAC (Pseudo amino acid compostion)</td>
+                <td>It is a protein descriptor that is used to represent the sequence-order information of a protein sequence</td>
+              </tr>
+              <tr>
+                <td>DPC (Dipeptide composition)</td>
+                <td>Counts the composition of dipeptides within the protein sequence.</td>
+              </tr>
+              <tr>
+                <td>APAAC (Amphiphilic Pseudo Amino Acid Composition)</td>
+                <td>APAAC calculates the pseudo amino acid composition for each physicochemical property, such as hydrophobicity,
+                    hydrophilicity, polarity, and charge.</td>
+              </tr>
+            </tbody>
+          </table>
+        
+        <br>
+        <h1>Exploratory Data Analysis</h1>
+        <p>
+            I found the summary of the dataset using pandas .describe() and .shape() function, It consisted of 10,659 observations
+            and 192 characteristics and the count, mean, standard deviation, minimum and maximum values and the quantiles of the 
+            data were analyzed and visualized using boxplots. Using pandas .corr() function the correlation between the features 
+            was calculated and visualized using Seaborn library as a heatmap(FIG 2). Highly correlated features were removed.The dataset 
+            containing all the features have been uploaded online <a href = "https://github.com/KingArthur-cyber/AR-V-NAR" target="_blank">
+            here</a>.<br>
+        </p>
+        <img src ="imgs/project1_img2.jpg"><br>
+        <h1>Machine learning algorithms: training and validation to establish optimal model</h1>
+        <p>
+            Machine learning in Python with Scikit-learn (https://scikit-learn.org/stable/) was used to evaluate the performance 
+            of 5 machine learning algorithms, namely, Gaussian Naive Bayes (gNB), Support Vector Machine (SVM), Random Forest (RF),
+            Gradient Boosting Classifier (GBC) and One more. The dataset containing all the features was used for training and 
+            testing the machine learning algorithms. The performance metrics include sensitivity, specificity, F1-score, 
+            the area under the receiver operating characteristic (AUROC), Matthews correlation coefficient (MCC)
+            and the classification accuracy for nested 10-fold cross-validation, which were computed in an n-fold 
+            (n = 10) cross-validation setting. The dataset was split into training and test set in the ratio of 4:1.
+            The trained models were used for labeling the hypothetical protein sequences along with their features, 
+            as ‘0’ and ‘1’, where 0 is for sequences showing no antibiotic resistance and 1 is for sequence showing antibiotic 
+            resistance.<br>
+        </p>
+        <h1>Generation of phylogenetic trees (maximum likelihood method) and Domain Identification</h1>
+        <p>
+            The sequences labeled as 1 were filtered from all the sequences, and then were binned according to their approximate 
+            length (+/-10 amino acids) along with all the known antibiotic resistance proteins, using a custom python script.
+            All the bins were then used for Multiple sequence alignment using MEGA 11 (https://www.megasoftware.net/) 
+            using the MUSCLE algorithm.
+            The MSA sessions were used for creating phylogenetic trees, using maximum likelihood method with the default 
+            parameters, a total of 44 phylogenetic trees were obtained with a variable number of sequences in each tree, as 
+            they were all distributed according to their respective length. The phylogenetic tress were analyzed using MEGA’s 
+            tree viewer any hypothetical sequence which landed close to known antibiotic resistance protein were noted and used for 
+            further analysis, a total of 26 closely related sequences were obtained.
+            <br>Domain identification<br>
+            Using InterproScan (https://www.ebi.ac.uk/interpro/search/sequence/) all the 26 hypothetical protein sequences 
+            were scanned for domains out of which 5 of them returned a known domain of which have annotated function of antibiotic 
+            resistance.<br>
+        </p>
+        <img src ="imgs/project1_img3.jpg"><br>
+    <h1>Results and Discussion</h1>
+    <p>
+        5 different machine learning models were used to classify antibiotic resistant proteins and non-antibiotic resistant 
+        proteins, the performance metrics for all models are given in table 2.
+    </p>
+    <table>
+        <thead>
+          <tr>
+            <th> </th>
+            <th>Random forest</th>
+            <th>SVM</th>
+            <th>Gauss naive Bayes</th>
+            <th>Xtreme gradient boosting</th>
+            <th>K- Nearest neighbor</th>
+          </tr>
+        
+        <tbody>
+          <tr>
+            <td>Accuracy</td>
+            <td>95.3%</td>
+            <td>88.1%</td>
+            <td>82.9%</td>
+            <td>95.2%</td>
+            <td>88.7%</td>
+          </tr>
+          <tr>
+            <td>MCC</td>
+            <td>90.0%</td>
+            <td>75.7%</td>
+            <td>65.7%</td>
+            <td>90.3%</td>
+            <td>77.1%</td>
+          </tr>
+          <tr>
+            <td>Sensitivity</td>
+            <td>89.9%</td>
+            <td>86.0%</td>
+            <td>84.6%</td>
+            <td>92.6%</td>
+            <td>87.1%</td>    
+          </tr>
+          <tr>
+            <td>Specificity</td>
+            <td>98.9%</td>
+            <td>89.1%</td>
+            <td>81.5%</td>
+            <td>97.3%</td>
+            <td>90.1%</td>
+          </tr>
+          <tr>
+            <td>ROC-AUC</td>
+            <td>94.4%</td>
+            <td>87.8%</td>
+            <td>83.0%</td>
+            <td>94.9%</td>
+            <td>88.5%</td>
+          </tr>
+          <tr>
+            <td>F1-Score</td>
+            <td>94.0%</td>
+            <td>86.3%</td>
+            <td>81.3%</td>
+            <td>94.5%</td>
+            <td>87.1%</td>
+          </tr>
+        </tbody>
+      </table><br>
+    <p>
+        It is observed that we got best performance for random forest classification and Xtreme gradient boosting (XGB), 
+        based on the performance metrics included here. A comparable deviation can be observed between the accuracies of different 
+        classification models.
+    </p>
+    <h1>Feature Importance</h1>
+    <table>
+        <thead>
+          <tr>
+            <th>Features</th>
+            <th>Formula</th>
+          </tr>
+        
+        <tbody>
+          <tr>
+            <td>_ChargeD3001</td>
+            <td>Calculated negative amino acids</td>
+          </tr>
+          <tr>
+            <td>Count of tryptophan</td>
+            <td>Relative count of tryptophan</td>
+          </tr>
+          <tr>
+            <td>Molar_coefficient_oxidised</td>
+            <td>Looks for Cys-Cys bonds</td>
+          </tr>
+          <tr>
+            <td>Molar_coefficient_reduced</td>
+            <td>Looks for Cys residues</td>
+          </tr>
+          <tr>
+            <td>_Charge T23</td>
+            <td>Looks for occurence of neutral and negatively charged amino acids</td>
+          </tr>
+        </tbody>
+      </table><br>  
+      <p>From the table we can infer that the antibiotic resistant proteins have more negatively charged amino acids, and the 
+        tryptophan count is usually higher.
+        A comparison of the important features between antibiotic resistant proteins and non-antibiotic resistant proteins can be 
+        visualized using a box plots (Figure3)
+         </p>
+        <img src = "imgs/project1_img4.jpg"><br>
+        <img src = "imgs/project1_img5.jpg"><br>
+        <p>No overlap can be seen in ChargeD3001 between non-AR proteins and AR proteins, hence a clear abundance of amino acids
+           ‘D’ (Aspartic acid) and ‘E’ (Glutamic acid) can be seen in antibiotic resistant proteins. A rise in tryptophan can also
+           be seen in majority of antibiotic resistant proteins. Molar extinction coefficient looks for Cys residues capable of 
+           reducing and Cys-Cys, which are not capable of reducing.
+        </p>
+      
+    <h1>Phylogenetic tree and InterProScan domain identification</h1>
+    <p>
+        Out of the 40 generated phylogenetic trees, 25 hypothetical proteins were found which were closely related to known 
+        antibiotic resistant proteins, these hypothetical protein sequences were scanned for domains using InterProScan, and 3 
+        of them had a predicted domain with predicted molecular function. (Table 4)
+    </p>
+    <table>
+        <thead>
+          <tr>
+            <th>Accession Number</th>
+            <th>Predicted Domain</th>
+            <th>Predicted Function</th>
+            <th>Resistance Against</th>
+          </tr>
+        
+        <tbody>
+          <tr>
+            <td>WP_042959742.1</td>
+            <td>1-52</td>
+            <td>N-acetylmuramoyl-L-alanine amidase activity</td>
+            <td>Glycopeptides</td>
+          </tr>
+          <tr>
+            <td>WP_002323534.1</td>
+            <td>1-110</td>
+            <td>phosphoric diester hydrolase activity</td>
+            <td>Macrolides</td>
+          </tr>
+          <tr>
+            <td>WP_002336533.1</td>
+            <td>1-224</td>
+            <td>Nucleotide-diphospho sugartransferases</td>
+            <td>Aminoglycosides</td>
+          </tr>
+        </tbody>
+      </table><br> 
+    <p>
+        These enzymes have been previously associated with different mechanisms of antibiotic resistance ([50],[51],[52]) and 
+        provide resistance against to a wide range of antibiotics including macrolides, or provide resistance through innate 
+        mechanisms, like formation of a spore coat, which might hinder the entry of an antibiotic within a bacterial cell.<br>
+    </p> 
+    <h1>Role of N-acetylmuramoyl-L-alanine amidase in antibiotic resistance</h1>
+    <p>
+
+It is a type of cell-wall hydrolase that breaks the amide bond between L-alanine and N-acetylmuramic acid in glycopeptides found 
+in cell walls,perhaps contributes to the recycling of peptidoglycan fragments.
+Bactericidal medications known as glycoproteins work by interacting with the terminal d-Ala-d-Ala in the pentapeptide of the 
+precursor N-acetylglucosamine (NAG)-N-acetylmuramic acid (NAM) peptidoglycan (PG) cell wall. Cell wall integrity is lowered as a 
+result of binding's blockage of transpeptide linkage, which ultimately leads to cell death.
+This enzyme might provide resistance against antibiotics, capable of binding to peptidoglycan residues by modifying the structure
+of peptidoglycan or it’s precursors.
+
+</p>
+
+
+<h1>Role of phosphoric diester hydrolase in antibiotic resistance</h1>
+<p>
+Phosphoric diester hydrolase is a broad term that refers to enzymes involved in the hydrolysis of phosphodiester bonds. 
+Generally speaking, phosphoric diester hydrolases have a variety of roles and perform a number of different biological tasks, 
+such as the breakdown of DNA and RNA, nucleotide metabolism, signalling molecule metabolism, and phospholipid metabolism. These 
+enzymes participate in numerous metabolic and signalling pathways within cells and are essential for preserving the integrity and 
+functionality of nucleic acids.
+Antibiotics which have the ability to bind to DNA, can have their function interrupted by this enzyme capable of hydrolyzing the 
+phosphodiester bonds freeing DNA of the antibiotic molecule and ligating it afterwards.
+
+</p>
+
+
+<h1>Role of Nucleotide-diphospho sugar transferases in antibiotic resistance</h1>
+ 
+<p>
+It is generally recognized that enzyme-catalyzed modification is the most common form of aminoglycoside resistance. It is known 
+that resistant bacteria have over 50 different types of aminoglycoside-modifying enzymes, which are what render aminoglycosides
+inactive. These three classes of aminoglycoside-modifying enzymes, including aminoglycoside phosphotransferases, aminoglycoside
+acetyltransferases, and aminoglycoside nucleotidyltransferases, almost exclusively introduce chemical groups (mostly acetylation, 
+adenylation, and phosphorylation) into the neamine core (rings I and II) of the aminoglycosides, including neomycin and kanamycin, 
+thus causing a lowered or abolished antibiotic affinity to the RNA.
+
+</p>
+
+
+<h1>Conclusion</h1>
+<p>
+In this study we demonstrated the usefulness of machine learning in classifying and predicting antibiotic resistant proteins, 
+with the help of fairly easy calculable protein descriptors which can be calculated with just the sequence of the protein itself. 
+Random Forest and Xtreme Gradient Boosting were able to classify the proteins as antibiotic resistant proteins 95% of the time.
+With the help of important features it is observed that a rise in the negatively charged amino acids as well as tryptophan can be 
+seen in antibiotic resistant proteins. This pattern is not unique to antibiotic resistant proteins, which implies a deeper 
+relationship between the features and labels.
+Antibiotic resistance is a complex phenomenon, mostly comprising of cascade of reactions working together to provide antibiotic
+resistance to the bacterium. Elucidation of the mechanism of antibiotic resistance requires further studies. Nevertheless, being 
+able to predict antibiotic resistance Insilco will help to provide a list of molecules capable of conferring antibiotic resistance 
+to the organism and help in finding the mechanism or the proteins involved in it.
+</p>
+
+</div>
+<br><br>
+    <footer>
+        <h1>&copy; 2024 Bioinformatics Hub. All rights reserved.</h1>
+    </footer>
+</body>
+</html>
